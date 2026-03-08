@@ -2,10 +2,76 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>8/3 Special for You ❤️</title>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@500&display=swap" rel="stylesheet">
     <style>
+
+		@media (max-width: 768px) {
+    /* 1. Trang Loading: Thu nhỏ vòng Cypher lại để không chiếm hết màn hình */
+    .cypher-container {
+        width: 180px; 
+        height: 180px;
+    }
+    .loading-gif {
+        width: 130px;
+        height: 130px;
+    }
+    #loading-page h2 {
+        font-size: 1rem;
+        letter-spacing: 2px;
+    }
+
+    /* 2. Tiêu đề Happy Women's Day: Giảm size chữ */
+    .content-box h1 {
+        font-size: 2rem !important; /* Máy tính 3.5rem, điện thoại 2rem là vừa */
+        margin-top: 20px;
+    }
+
+    /* 3. Nội dung lời chúc: Thu hẹp lề và giảm size chữ */
+    .content-box {
+        width: 95%; /* Chiếm gần hết chiều ngang điện thoại */
+        margin: 50px auto;
+    }
+    .message-text {
+        font-size: 1.05rem !important; /* Chữ nhỏ lại để không phải cuộn quá nhiều */
+        line-height: 1.6;
+        padding: 10px;
+    }
+
+    /* 4. Các Sticker GIF: Đây là phần hay bị lỗi nhất */
+    /* Trên điện thoại, chúng ta nên thu nhỏ sticker và đưa về các góc */
+    .gif-left {
+        width: 60px !important;
+        top: 15% !important;
+        left: 2% !important;
+    }
+    .gif-right {
+        width: 60px !important;
+        top: 15% !important;
+        right: 2% !important;
+    }
+    .gif-top {
+        width: 50px !important;
+        top: 0% !important;
+    }
+
+    /* 5. Nút bấm cuối cùng */
+    .glow-btn {
+        padding: 12px 30px;
+        font-size: 1rem;
+        width: 80%; /* Nút dài ra cho dễ bấm bằng ngón tay */
+    }
+
+    /* 6. Thanh điều khiển nhạc */
+    #music-box {
+        bottom: 10px;
+        left: 10px;
+        padding: 5px 15px;
+        transform: scale(0.8); /* Thu nhỏ bảng nhạc lại */
+        transform-origin: bottom left;
+    }
+}
 	    /* Style cho các hình GIF trang trí */
 .cute-gifs .gif-item {
     position: absolute;
@@ -160,36 +226,37 @@
     </div>
 
     <script>
-		window.onload = () => {
-    // 1. Setup hẹn giờ 3 giây để phát nhạc
-    setTimeout(() => {
-        const audio = document.getElementById('myAudio');
-        
-        // Cố gắng phát nhạc
-        audio.play().then(() => {
-            console.log("Nhạc đã tự động phát thành công!");
-        }).catch(error => {
-            // Nếu trình duyệt chặn (do chưa chạm vào màn hình), 
-            // nó sẽ đợi đến khi người dùng click bất cứ đâu trên web bài hát sẽ phát ngay.
-            console.log("Trình duyệt chặn autoplay. Nhạc sẽ phát sau khi bạn chạm vào màn hình.");
-            document.addEventListener('click', () => {
-                audio.play();
-            }, { once: true }); // Chỉ chạy 1 lần duy nhất
-        });
-    }, 3000); // 3000ms = 3 giây
+	window.onload = () => {
+    const audio = document.getElementById('myAudio');
 
-    // 2. Chuyển từ Loading sang Main (Vẫn giữ 4 giây như cũ cho đẹp)
+    // Hàm cố gắng phát nhạc
+    const tryPlay = () => {
+        audio.play().then(() => {
+            // Nếu phát thành công thì xóa các sự kiện lắng nghe
+            document.removeEventListener('click', tryPlay);
+            document.removeEventListener('touchstart', tryPlay);
+        }).catch(() => {
+            console.log("Chờ người dùng chạm để phát nhạc...");
+        });
+    };
+
+    // Lắng nghe hành động chạm/click đầu tiên vào web
+    document.addEventListener('click', tryPlay);
+    document.addEventListener('touchstart', tryPlay); // Dành cho điện thoại
+    
+    // Cố gắng phát ngay (có thể thành công nếu bro may mắn hoặc tùy cài đặt trình duyệt)
+    tryPlay();
+
+    // Chuyển trang Loading sau 4 giây
     setTimeout(() => {
         document.getElementById('loading-page').style.display = 'none';
         document.getElementById('main-page').style.display = 'block';
-        
-        // Mở rèm sau khi hiện trang main
         setTimeout(() => {
             document.getElementById('c-left').classList.add('open-left');
             document.getElementById('c-right').classList.add('open-right');
             startExperience();
         }, 500);
-    }, 4000); 
+    }, 4000);
 };
         const typewriterElement = document.getElementById('typewriter');
         const longMessage = `Gửi công chúa nhỏ của anh! ❤️❤️❤️
