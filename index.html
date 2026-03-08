@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>8/3 Special for You ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@500&display=swap" rel="stylesheet">
+    <style>
+	    /* Style cho các hình GIF trang trí */
+.cute-gifs .gif-item {
+    position: absolute;
+    z-index: 15; /* Nằm dưới rèm nhưng trên nền */
+    pointer-events: none;
+    transition: all 0.5s ease;
+}
+
+/* GIF trên đỉnh tiêu đề */
+.gif-top {
+    top: 1%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+}
+
+/* GIF bên trái đoạn chữ */
+.gif-left {
+    top: 40%;
+    left: 5%;
+    width: 120px;
+    animation: bounceSlow 3s infinite ease-in-out;
+}
+
+/* GIF bên phải đoạn chữ */
+.gif-right {
+    top: 40%;
+    right: 5%;
+    width: 120px;
+    animation: bounceSlow 3s infinite ease-in-out 1.5s; /* Delay để so le */
+}
+
+/* GIF góc dưới bên phải */
+.gif-bottom-right {
+    bottom: 250px;
+    right: 20px;
+    width: 120px;
+}
+
+/* Hiệu ứng nhún nhảy cho thêm phần dễ thương */
+@keyframes bounceSlow {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+/* Đảm bảo GIF không đè lên chữ trên điện thoại */
+@media (max-width: 768px) {
+    .gif-left, .gif-right { width: 60px; top: 80%; }
+}
+        *, *::after, *::before { padding: 0; margin: 0; box-sizing: border-box; }
+        :root { --pink-bg: #fff0f5; --pink-main: #ff6bad; --glow-color: #ff007f; }
+        body, html { width: 100%; height: 100%; font-family: 'Quicksand', sans-serif; overflow: hidden; }
+
+        /* --- TRANG 1: LOADING CYPHER DÒNG ĐIỆN 7 MÀU --- */
+        #loading-page {
+            position: fixed; width: 100%; height: 100%; background: #000; z-index: 9999;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+        }
+        .cypher-container { position: relative; width: 280px; height: 280px; display: flex; align-items: center; justify-content: center; }
+        
+        .electric-ring {
+            position: absolute; width: 100%; height: 100%; border-radius: 50%;
+            background: conic-gradient(from 0deg, red, orange, yellow, green, cyan, blue, violet, red);
+            mask: radial-gradient(farthest-side, transparent calc(100% - 4px), #fff 0);
+            -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 4px), #fff 0);
+            animation: rotateElectric 1s linear infinite;
+            filter: drop-shadow(0 0 10px cyan) drop-shadow(0 0 20px #ff007f);
+        }
+        @keyframes rotateElectric { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        .loading-gif { width: 180px; height: 180px; border-radius: 50%; object-fit: cover; z-index: 10; border: 1px solid rgba(255,255,255,0.2); }
+
+        /* --- TRANG 2: NỀN HỒNG + RÈM --- */
+        #main-page { display: none; height: 100vh; width: 100vw; position: relative; background: var(--pink-bg); }
+        .curtain { position: absolute; top: 0; width: 50%; height: 100%; background: #ff4d94; z-index: 500; transition: transform 2.5s cubic-bezier(0.4, 0, 0.2, 1); }
+        .curtain-left { left: 0; border-right: 3px solid gold; box-shadow: 10px 0 30px rgba(0,0,0,0.3); }
+        .curtain-right { right: 0; border-left: 3px solid gold; box-shadow: -10px 0 30px rgba(0,0,0,0.3); }
+        .curtain.open-left { transform: translateX(-100%); }
+        .curtain.open-right { transform: translateX(100%); }
+
+        /* MƯA HOA RƠI DÀY & XIÊN */
+        .falling-item { position: absolute; top: -10vh; pointer-events: none; z-index: 10; animation: fallAnimation linear forwards; }
+        @keyframes fallAnimation {
+            0% { transform: translateY(0) translateX(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(110vh) translateX(var(--drift)) rotate(360deg); opacity: 0; }
+        }
+
+        .content-box { position: relative; z-index: 20; width: 85%; max-width: 700px; margin: 80px auto; text-align: center; }
+        .message-text { font-size: 1.3rem; line-height: 1.8; font-family: 'Dancing Script', cursive; min-height: 250px; padding: 20px; color: #444; }
+
+        /* NÚT GLOWING BUTTON */
+        .glow-btn {
+            display: none; /* Ẩn lúc đầu */
+            margin: 30px auto; padding: 15px 45px; font-size: 1.2rem; font-weight: bold; color: white;
+            background: var(--pink-main); border: none; border-radius: 50px; cursor: pointer;
+            box-shadow: 0 0 20px var(--glow-color); 
+            animation: pulseGlow 1.5s infinite, fadeIn 1s forwards;
+        }
+        @keyframes pulseGlow { 
+            0% { transform: scale(1); box-shadow: 0 0 10px var(--glow-color); } 
+            50% { transform: scale(1.05); box-shadow: 0 0 30px var(--glow-color); } 
+            100% { transform: scale(1); box-shadow: 0 0 10px var(--glow-color); } 
+        }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        #music-box { position: fixed; bottom: 20px; left: 20px; z-index: 1000; background: rgba(255,255,255,0.8); padding: 10px 20px; border-radius: 30px; display: flex; align-items: center; gap: 15px; }
+    </style>
+</head>
+<body>
+
+    <!-- TRANG LOADING -->
+    <div id="loading-page">
+        <div class="cypher-container">
+            <div class="electric-ring"></div>
+            <!-- THAY LINK GIF CỦA BẠN VÀO ĐÂY -->
+            <img src="https://media.tenor.com/27dQ8ddrv3AAAAAi/wee.gif" class="loading-gif">
+        </div>
+        <h2 style="color: cyan; margin-top: 30px; letter-spacing: 5px; text-shadow: 0 0 10px cyan;">VŨ TRỤ ĐANG XOAY VÌ EM...</h2>
+    </div>
+
+    <!-- TRANG CHÍNH -->
+    <div id="main-page">
+        <div class="curtain curtain-left" id="c-left"></div>
+        <div class="curtain curtain-right" id="c-right"></div>
+
+        <div id="music-box">
+            <div style="cursor: pointer; font-size: 24px;" id="play-pause">⏸️</div>
+            <input type="range" id="volume-slider" min="0" max="1" step="0.1" value="0.5">
+            <audio id="myAudio" loop>
+                <source src="https://www.bensound.com/bensound-music/bensound-love.mp3" type="audio/mpeg">
+            </audio>
+        </div>
+          <div class="cute-gifs">
+    <!-- GIF 1: Trên tiêu đề -->
+    <img src="https://c.tenor.com/SsxdqQZ8cmQAAAAC/tenor.gif" class="gif-item gif-top">
+
+    <!-- GIF 2: Bên trái tin nhắn -->
+    <img src="https://c.tenor.com/Qa2QFX8Ln9wAAAAC/tenor.gif" class="gif-item gif-left">
+
+    <!-- GIF 3: Bên phải tin nhắn -->
+    <img src="https://c.tenor.com/LfVXeDuwInMAAAAC/tenor.gif" class="gif-item gif-right">
+
+    <!-- GIF 4: Góc dưới bên phải -->
+    <img src="https://media.tenor.com/RDwCMZeZ7b8AAAAi/hugs.gif" class="gif-item gif-bottom-right">
+</div>
+        <div class="content-box">
+            <h1 style="color: var(--pink-main); font-family: 'Dancing Script'; font-size: 3.5rem;">Happy Women's Day!</h1>
+            <div class="message-text" id="typewriter"></div>
+            
+            <!-- NÚT CHUYỂN TRANG FLOWER -->
+            <button class="glow-btn" id="btn-to-flower" onclick="location.href='flower.html'">Nhấn để nhận quà cuối nhé ✨</button>
+        </div>
+    </div>
+
+    <script>
+        const typewriterElement = document.getElementById('typewriter');
+        const longMessage = `Gửi công chúa nhỏ của anh! ❤️
+
+Hôm nay là ngày 8/3, ngày mà cả thế giới dành để tôn vinh những người phụ nữ tuyệt vời, nhưng với anh, em chính là người phụ nữ duy nhất và tuyệt vời nhất mà anh có được. 🌹
+
+Cảm ơn em đã bước vào cuộc đời anh, mang theo ánh sáng rực rỡ và hơi ấm dịu dàng. Có em ở bên, mỗi ngày trôi qua với anh đều là một ngày đặc biệt. Anh trân trọng từng khoảnh khắc chúng mình ở cạnh nhau, trân trọng cả nụ cười hồn nhiên và ánh mắt ấm áp mà em dành cho anh. 
+
+Chúc bé yêu của anh luôn xinh đẹp như những đóa hoa hồng, luôn rạng rỡ như ánh nắng ban mai và lúc nào cũng tràn đầy hạnh phúc. Mong rằng mọi điều tốt đẹp nhất trên thế gian này sẽ tìm đến với em, vì em xứng đáng với tất cả những điều tuyệt vời nhất. 
+
+Dù sau này thế giới có xoay vần ra sao, hãy nhớ rằng luôn có anh ở phía sau, sẵn sàng nắm chặt tay em và cùng em đi qua mọi giông bão. Anh yêu em nhiều hơn cả những lời anh có thể nói ra. 
+
+Anh có chuẩn bị một món quà bất ngờ cuối cùng dành riêng cho em ở phía sau tấm rèm này. Hãy nhấn vào nút bên dưới khi em đã sẵn sàng đón nhận tình cảm của anh nhé! 💖🌹✨🌻`;
+
+        // Chạy Loading
+        window.onload = () => {
+            setTimeout(() => {
+                document.getElementById('loading-page').style.display = 'none';
+                document.getElementById('main-page').style.display = 'block';
+                setTimeout(() => {
+                    document.getElementById('c-left').classList.add('open-left');
+                    document.getElementById('c-right').classList.add('open-right');
+                    startExperience();
+                }, 500);
+            }, 4000); 
+        };
+
+        function startExperience() {
+            document.getElementById('myAudio').play();
+            
+            // Đánh máy
+            let i = 0;
+            function type() {
+                if (i < longMessage.length) {
+                    typewriterElement.innerHTML += longMessage.charAt(i) === '\n' ? '<br>' : longMessage.charAt(i);
+                    i++; setTimeout(type, 50);
+                } else {
+                    // HIỆN NÚT SAU KHI CHỮ CHẠY XONG
+                    document.getElementById('btn-to-flower').style.display = 'block';
+                }
+            }
+            type();
+
+            // Mưa hoa rơi dày đặc
+            setInterval(createFallingItem, 150);
+        }
+
+        function createFallingItem() {
+            const items = ['🌹', '❤️', '💖', '🌸', '💐', '✨'];
+            const item = document.createElement('div');
+            item.className = 'falling-item';
+            item.innerText = items[Math.floor(Math.random() * items.length)];
+            const drift = (Math.random() - 0.5) * 400;
+            item.style.left = Math.random() * 110 + 'vw';
+            item.style.fontSize = Math.random() * 20 + 20 + 'px';
+            item.style.setProperty('--drift', drift + 'px');
+            item.style.animationDuration = (Math.random() * 3 + 4) + 's';
+            document.getElementById('main-page').appendChild(item);
+            setTimeout(() => item.remove(), 7000);
+        }
+
+        // Music Control
+        const audio = document.getElementById('myAudio');
+        document.getElementById('play-pause').onclick = function() {
+            if (audio.paused) { audio.play(); this.innerText = '⏸️'; }
+            else { audio.pause(); this.innerText = '▶️'; }
+        };
+        document.getElementById('volume-slider').oninput = (e) => audio.volume = e.target.value;
+    </script>
+</body>
+</html>
