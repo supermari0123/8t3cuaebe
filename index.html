@@ -160,6 +160,37 @@
     </div>
 
     <script>
+		window.onload = () => {
+    // 1. Setup hẹn giờ 3 giây để phát nhạc
+    setTimeout(() => {
+        const audio = document.getElementById('myAudio');
+        
+        // Cố gắng phát nhạc
+        audio.play().then(() => {
+            console.log("Nhạc đã tự động phát thành công!");
+        }).catch(error => {
+            // Nếu trình duyệt chặn (do chưa chạm vào màn hình), 
+            // nó sẽ đợi đến khi người dùng click bất cứ đâu trên web bài hát sẽ phát ngay.
+            console.log("Trình duyệt chặn autoplay. Nhạc sẽ phát sau khi bạn chạm vào màn hình.");
+            document.addEventListener('click', () => {
+                audio.play();
+            }, { once: true }); // Chỉ chạy 1 lần duy nhất
+        });
+    }, 3000); // 3000ms = 3 giây
+
+    // 2. Chuyển từ Loading sang Main (Vẫn giữ 4 giây như cũ cho đẹp)
+    setTimeout(() => {
+        document.getElementById('loading-page').style.display = 'none';
+        document.getElementById('main-page').style.display = 'block';
+        
+        // Mở rèm sau khi hiện trang main
+        setTimeout(() => {
+            document.getElementById('c-left').classList.add('open-left');
+            document.getElementById('c-right').classList.add('open-right');
+            startExperience();
+        }, 500);
+    }, 4000); 
+};
         const typewriterElement = document.getElementById('typewriter');
         const longMessage = `Gửi công chúa nhỏ của anh! ❤️
 
